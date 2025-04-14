@@ -11,6 +11,10 @@
 // Contains
 // - checks if the given element is present in the collection
 
+// Order by, OrderByDescending, ThenBy, ThenByDescending
+// order collections
+// Order by: orders the collection by some criteria
+
 using LinnqPractice.Pets;
 using LinqPractice.Pets;
 using Microsoft.Graph.Models;
@@ -37,13 +41,15 @@ namespace LinqTutorial
 
             //Determines wheter all elemenets satisft the condition
             var numbers = new[] { 5, 9, 2, 12, 6 };
+            var orderedNumbers = numbers.OrderBy(number => number);
+
             bool is7Present = numbers.Contains(7);
 
             var areAllLargerThanZero = numbers.All(number => number > 0);
 
             var words = new[] { "lion", "tiger", "snow leopard" };
             var isTigerPresent = words.Contains("tiger");
-
+            var orderByWordsDesc = words.OrderBy(words => words);
             var pets =
             new[]
             {
@@ -57,6 +63,12 @@ namespace LinqTutorial
                 new Pet(8, "Gar", PetType.Cat, 1.1f)
             };
 
+            var petsOrderedByName = pets.OrderBy(pet => pet.Name);
+
+            var petsOrderedByIdDesc = pets.OrderByDescending(pet => pet.Id);
+
+            var petsOrderByTypeThenName = pets.OrderBy(pet => pet.PetType).ThenBy(pet => pet.Name);
+            
 
             var countOfDogs = pets.Count(pet => pet.PetType == PetType.Dog);
 
