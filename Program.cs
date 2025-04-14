@@ -3,10 +3,13 @@
 // - used to check if any element in the collection matches the given criteria.
 
 // All
-// 
+//  Check if all element in the collection satisfy the condition
 
 // Count , Long Count
 // - Count the elements in the collection that match the given predicate
+
+// Contains
+// - checks if the given element is present in the collection
 
 using LinnqPractice.Pets;
 using LinqPractice.Pets;
@@ -27,13 +30,19 @@ namespace LinqTutorial
             // passing the lambda expression that takes the element from this collection and returns a bool
             // a function that takes an int and returns true if int is larger than 10,other wise false.
             // Any - simply iterates the collection and executes the parameter function for all elements.
-            var numbers = new[] { 5, 9, 2, 12, 6 };
+
             //bool isAnyLargerThan10 = numbers.Any(number => number > 10);
             //Console.WriteLine(isAnyLargerThan10);
             //Console.ReadKey();
 
             //Determines wheter all elemenets satisft the condition
+            var numbers = new[] { 5, 9, 2, 12, 6 };
+            bool is7Present = numbers.Contains(7);
+
             var areAllLargerThanZero = numbers.All(number => number > 0);
+
+            var words = new[] { "lion", "tiger", "snow leopard" };
+            var isTigerPresent = words.Contains("tiger");
 
             var pets =
             new[]
