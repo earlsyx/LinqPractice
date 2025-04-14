@@ -2,6 +2,12 @@
 // How to use Any method from LINQ
 // - used to check if any element in the collection matches the given criteria.
 
+// All
+// 
+
+// Count , Long Count
+// - Count the elements in the collection that match the given predicate
+
 using LinnqPractice.Pets;
 using LinqPractice.Pets;
 using Microsoft.Graph.Models;
@@ -42,7 +48,16 @@ namespace LinqTutorial
                 new Pet(8, "Gar", PetType.Cat, 1.1f)
             };
 
+
+            var countOfDogs = pets.Count(pet => pet.PetType == PetType.Dog);
+
+            var countOfPetsNamedDeku = pets.LongCount(pet => pet.Name == "Bruce");
+
+            var countOfDogsLighterThan10Kg = pets.Count(pet => pet.PetType == PetType.Dog && pet.Weight < 10);
+
             var doAllHaveNonEmptyNames = pets.All(pet => !string.IsNullOrEmpty(pet.Name));
+
+            var homeManyPets = pets.Count();
 
             var areAllCats = pets.All(pet => pet.PetType == PetType.Cat);
 
