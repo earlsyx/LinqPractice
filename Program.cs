@@ -22,10 +22,12 @@ namespace LinqTutorial
             // a function that takes an int and returns true if int is larger than 10,other wise false.
             // Any - simply iterates the collection and executes the parameter function for all elements.
             var numbers = new[] { 5, 9, 2, 12, 6 };
-            bool isAnyLargerThan10 = numbers.Any(number => number > 10);
-            Console.WriteLine(isAnyLargerThan10);
-            Console.ReadKey();
+            //bool isAnyLargerThan10 = numbers.Any(number => number > 10);
+            //Console.WriteLine(isAnyLargerThan10);
+            //Console.ReadKey();
 
+            //Determines wheter all elemenets satisft the condition
+            var areAllLargerThanZero = numbers.All(number => number > 0);
 
             var pets =
             new[]
@@ -39,6 +41,12 @@ namespace LinqTutorial
                 new Pet(7, "Tom", PetType.Cat, 1.1f),
                 new Pet(8, "Gar", PetType.Cat, 1.1f)
             };
+
+            var doAllHaveNonEmptyNames = pets.All(pet => !string.IsNullOrEmpty(pet.Name));
+
+            var areAllCats = pets.All(pet => pet.PetType == PetType.Cat);
+
+
 
             var isAnyPetNamedAnthony = pets.Any(pet => pet.Name == "Anthony");
 
