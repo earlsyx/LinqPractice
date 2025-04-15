@@ -109,5 +109,21 @@ namespace LinqPractice.CodingPractice
             return shortestFirstWord;
         }
 
+
+       
+            public static IEnumerable<DateTime> GetFridaysOfYear(int year, IEnumerable<DateTime> dates)
+            {
+            //given -> collection -> date, number -> year 
+            // return -> collection of all dates that are Fridays (without duplicate)
+
+            //filter out dates to be friday only 
+            // filter by distinct(no duplicate)
+
+            var getFridaydsOfYear = dates.Where(date => date.DayOfWeek == DayOfWeek.Friday && date.Year == year).Distinct();
+
+            return getFridaydsOfYear;
+            }
+        
+
     }
 }
