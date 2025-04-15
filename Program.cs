@@ -15,6 +15,14 @@
 // order collections
 // Order by: orders the collection by some criteria
 
+// First AND LAST METHOD
+// Along with FirstOrDefault and LastOrDefault
+// First - returns the first element from the collection
+// - if a predicate is given, it returns the first element that matches this predicate
+// Last - same, last element returned;
+
+
+
 using LinnqPractice.Pets;
 using LinqPractice.Pets;
 using Microsoft.Graph.Models;
@@ -63,12 +71,25 @@ namespace LinqTutorial
                 new Pet(8, "Gar", PetType.Cat, 1.1f)
             };
 
+            // This keyword is used to declare an extention method parameter
+            IEnumerable<int> numberss = new[] { 16, 8, 9, -1, 2 };
+            var firstNumber = numberss.First();
+
+            var firstOddNumber = numberss.First(number => number % 2 == 1);
+
+            var lastDog = pets.Last(pet => pet.PetType == PetType.Dog);
+
             var petsOrderedByName = pets.OrderBy(pet => pet.Name);
 
             var petsOrderedByIdDesc = pets.OrderByDescending(pet => pet.Id);
 
             var petsOrderByTypeThenName = pets.OrderBy(pet => pet.PetType).ThenBy(pet => pet.Name);
-            
+
+            //var lastPetHeavierThan100 = pets.Last(pet => pet.Weight > 100);
+
+            var lastPetHeavierThan100 = pets.LastOrDefault(pet => pet.Weight > 100);
+
+            var heaviestPet = pets.OrderByDescending(pet => pet.Weight).First();
 
             var countOfDogs = pets.Count(pet => pet.PetType == PetType.Dog);
 
