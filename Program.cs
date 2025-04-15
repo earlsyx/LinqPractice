@@ -49,6 +49,8 @@ namespace LinqTutorial
 
             //Determines wheter all elemenets satisft the condition
             var numbers = new[] { 5, 9, 2, 12, 6 };
+            var distinctNunmbers = numbers.Distinct();
+
             var orderedNumbers = numbers.OrderBy(number => number);
             var evenNumbers = numbers.Where(number => number % 2 == 0);
             
