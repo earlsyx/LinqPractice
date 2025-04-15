@@ -50,6 +50,8 @@ namespace LinqTutorial
             //Determines wheter all elemenets satisft the condition
             var numbers = new[] { 5, 9, 2, 12, 6 };
             var orderedNumbers = numbers.OrderBy(number => number);
+            var evenNumbers = numbers.Where(number => number % 2 == 0);
+            
 
             bool is7Present = numbers.Contains(7);
 
@@ -71,10 +73,12 @@ namespace LinqTutorial
                 new Pet(8, "Gar", PetType.Cat, 1.1f)
             };
 
+            var petHeavier100kg = pets.Where(pet => pet.Weight > 100);
             // This keyword is used to declare an extention method parameter
             IEnumerable<int> numberss = new[] { 16, 8, 9, -1, 2 };
             var firstNumber = numberss.First();
-
+            var petsWithSpecificTraits = pets.Where(
+                pet => (pet.PetType == PetType.Cat || pet.PetType == PetType.Dog) && pet.Name.Length <= 4 && pet.Weight > 10 && pet.Id % 2 == 0);
             var firstOddNumber = numberss.First(number => number % 2 == 1);
 
             var lastDog = pets.Last(pet => pet.PetType == PetType.Dog);
@@ -85,8 +89,13 @@ namespace LinqTutorial
 
             var petsOrderByTypeThenName = pets.OrderBy(pet => pet.PetType).ThenBy(pet => pet.Name);
 
+            var indexSelectedByUser = new[] { 1, 6, 7 };
+            var petsSelectedByUserAndLighterThan5Kilos = pets.Where((pet, index) => pet.Weight < 5 && indexSelectedByUser.Contains(index));
             //var lastPetHeavierThan100 = pets.Last(pet => pet.Weight > 100);
 
+
+            var countOfHeavyPets30kgMore = pets.Count(pet => pet.Weight > 100);
+            var whereHeavey30kg = pets.Where(pet => pet.Weight > 100).Count();
             var lastPetHeavierThan100 = pets.LastOrDefault(pet => pet.Weight > 100);
 
             var heaviestPet = pets.OrderByDescending(pet => pet.Weight).First();
