@@ -49,6 +49,8 @@ namespace LinqTutorial
 
             //Determines wheter all elemenets satisft the condition
             var numbers = new[] { 5, 9, 2, 12, 6 };
+            IEnumerable<string> numberString = numbers.Select(number => number.ToString());
+            var numbersX2 = numbers.Select(number => number * 2);
             var distinctNunmbers = numbers.Distinct();
 
             var orderedNumbers = numbers.OrderBy(number => number);
@@ -60,6 +62,9 @@ namespace LinqTutorial
             var areAllLargerThanZero = numbers.All(number => number > 0);
 
             var words = new[] { "lion", "tiger", "snow leopard" };
+
+            var numberWordList = words.Select((word, index) => $"{index + 1}. {word}");
+            var wordsToUpper = words.Select(word => word.ToUpper());
             var isTigerPresent = words.Contains("tiger");
             var orderByWordsDesc = words.OrderBy(words => words);
             var pets =
@@ -75,6 +80,14 @@ namespace LinqTutorial
                 new Pet(8, "Gar", PetType.Cat, 1.1f)
             };
 
+            //collection of all weights of pets.
+            var petWeightsColletion = pets.Select(pet => pet.Weight);
+            //pets that heavier than 4 kilo
+            var petWeightGreaterThan4 = pets.Where(pet => pet.Weight > 4).Select(types => types.PetType).Distinct();
+
+            var petsInitialOrderedAlphabetically = pets.OrderBy(pet => pet.Name).Select(initials => initials.Name[0]).Distinct();
+
+            var petsDataToCollectionOfString = pets.Select(pet => $"Pet named {pet.Name}, of type {pet.PetType} and Weight of {pet.Weight}");
             var petHeavier100kg = pets.Where(pet => pet.Weight > 100);
             // This keyword is used to declare an extention method parameter
             IEnumerable<int> numberss = new[] { 16, 8, 9, -1, 2 };
