@@ -81,5 +81,33 @@ namespace LinqPractice.CodingPractice
 
             return countListcontainNumberZeroWithLongerThanLength;
         }
+
+        /*
+ * OrderBy, First & Last
+ * 
+ * Implement the FindShortestWord method, which finds the shortest word in a collection of strings.
+ * 
+ * Requirements:
+ * - Return the word with the smallest length.
+ * - If multiple words have the same minimal length, return the one that appears first in order.
+ * - If the input collection is empty, throw an exception.
+ * 
+ * Examples:
+ * ----------
+ * Input: {"aaa", "b", "c", "dd"}
+ * Output: "b"
+ * Explanation: Both "b" and "c" are the shortest (1 letter), but "b" comes first.
+ * 
+ * Input: {}
+ * Output: Exception is thrown
+ * Explanation: There are no words to evaluate.
+ */
+
+        public static string FindShortestWord(List<string> words)
+        {
+            var shortestFirstWord = words.OrderBy(word => word.Length).First();
+            return shortestFirstWord;
+        }
+
     }
 }
