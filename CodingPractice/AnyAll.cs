@@ -123,7 +123,23 @@ namespace LinqPractice.CodingPractice
 
             return getFridaydsOfYear;
             }
-        
+
+        public static double CalculateAverageDurationInMilliseconds(IEnumerable<TimeSpan> timeSpans)
+        {
+            if(!timeSpans.Any())
+            {
+                throw new InvalidOperationException("Collection must not be empty.");
+            }
+
+            var averages = timeSpans.Select(timeSpan => timeSpan.TotalMilliseconds);
+            var averageTest = averages.Sum();
+            var averagesSum = averageTest / timeSpans.Count(); 
+
+            return averagesSum;
+        }
+
+
+
 
     }
 }
