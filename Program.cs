@@ -35,15 +35,38 @@ namespace LinqTutorial
 {
     class Program
     {
+        
+
         static void Main(string[] args)
         {
+            var listOfNumbers = new List<List<int>>
+            {
+                new List<int> { 15, 68, 20, 12, 19, 8, 55 },
+                new List<int> { 12, 1, 3, 4, -19, 8, 7, 6 },
+                new List<int> { 5, -6, -2, -12, -10, 7 },
+            };
+
+            //build a collection of objects of the count average type  
+            var result = listOfNumbers
+                .Select(listofnumbers => new
+                {
+                    Count = listofnumbers.Count(),
+                    Average = listofnumbers.Average()
+                })
+                .OrderByDescending(countAndAverage => countAndAverage.Average)
+                .Select(countAndAverage => $"Count is {countAndAverage.Count}, AND Average is {countAndAverage.Average}");
+
+
+            var pet = new { Name = "Jackie", Type = "Dog" };//read only
+
+
             //Predicate - a function to test each elemetn for a condition
             //Lamdba expression - anonymous function defined right here,
             // passing the lambda expression that takes the element from this collection and returns a bool
             // a function that takes an int and returns true if int is larger than 10,other wise false.
             // Any - simply iterates the collection and executes the parameter function for all elements.
 
-            //bool isAnyLargerThan10 = numbers.Any(number => number > 10);
+            //bool isAnyLargerThan10 = listofnumbers.Any(number => number > 10);
             //Console.WriteLine(isAnyLargerThan10);
             //Console.ReadKey();
 
@@ -55,7 +78,7 @@ namespace LinqTutorial
 
             var orderedNumbers = numbers.OrderBy(number => number);
             var evenNumbers = numbers.Where(number => number % 2 == 0);
-            
+
 
             bool is7Present = numbers.Contains(7);
 
@@ -134,7 +157,13 @@ namespace LinqTutorial
             var isAnyFish = pets.Any(pet => pet.PetType == PetType.Fish);
             //name longer than 6 letters and Id thats even number
             var isThereAnySpecificPet = pets.Any(pet => pet.Name.Length > 6 && pet.Id % 2 == 0);
+
+
+        
         }
+
+     
+
     }
 
 
